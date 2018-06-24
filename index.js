@@ -97,3 +97,63 @@ googleSubscriptionAPI.prototype.deferSubscription = function(expectedExpiryTimeM
         }
     });
 }
+
+// Revoke a subscription
+googleSubscriptionAPI.prototype.revokeSubscription = function(token, cb) {
+    var getSubUrl = 'https://www.googleapis.com/androidpublisher/v2/applications/%s/purchases/subscriptions/%s/tokens/%s:revoke';
+    var _url = util.format(getSubUrl, encodeURIComponent(this.options.packageName), encodeURIComponent(this.options.subscriptionId), encodeURIComponent(token));
+    request({
+        url: _url,
+        jwt: {
+            email: this.options.email,
+            key: this.options.key,
+            keyFile: undefined,
+            scopes: ['https://www.googleapis.com/auth/androidpublisher']
+        },
+        method: 'post'
+    }, function(err, res, body) {
+        if (err) {
+            return cb(err);
+        }
+        try {
+            var obj = JSON.parse(body);
+        } catch (e) {
+            console.log('Already json')
+        }
+        if ('error' in obj) {
+            cb(new Error(obj.error.message));
+        } else {
+            cb(null, { message: 'Subscription revoke request completed successfully' });
+        }
+    });
+}
+
+// Cancel a subscription
+googleSubscriptionAPI.prototype.revokeSubscription = function(token, cb) {
+    var getSubUrl = 'https://www.googleapis.com/androidpublisher/v2/applications/%s/purchases/subscriptions/%s/tokens/%s:cancel';
+    var _url = util.format(getSubUrl, encodeURIComponent(this.options.packageName), encodeURIComponent(this.options.subscriptionId), encodeURIComponent(token));
+    request({
+        url: _url,
+        jwt: {
+            email: this.options.email,
+            key: this.options.key,
+            keyFile: undefined,
+            scopes: ['https://www.googleapis.com/auth/androidpublisher']
+        },
+        method: 'post'
+    }, function(err, res, body) {
+        if (err) {
+            return cb(err);
+        }
+        try {
+            var obj = JSON.parse(body);
+        } catch (e) {
+            console.log('Already json')
+        }
+        if ('error' in obj) {
+            cb(new Error(obj.error.message));
+        } else {
+            cb(null, { message: 'Subscription cancel request completed successfully' });
+        }
+    });
+}

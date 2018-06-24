@@ -1,14 +1,33 @@
 {
-  "name": "optus-subscription-refund",
+  "name": "gplay-purchase-api-nodejs-client",
   "version": "1.0.0",
-  "description": "",
+  "description": "Google Play Purchase API Client For Nodejs",
   "main": "index.js",
+  "dependencies": {
+    "google-oauth-jwt": "0.2.0"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Aravind",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vsaravind007/gplay-purchase-api-nodejs-client.git"
+  },
+  "keywords": [
+    "google",
+    "play",
+    "purchase",
+    "api",
+    "google",
+    "play",
+    "in-app",
+    "purchases"
+  ],
+  "author": "Aravind VS",
   "license": "ISC",
-  "dependencies": {
-    "google-oauth-jwt": "0.2.0"
-  }
+  "bugs": {
+    "url": "https://github.com/vsaravind007/gplay-purchase-api-nodejs-client/issues"
+  },
+  "homepage": "https://github.com/vsaravind007/gplay-purchase-api-nodejs-client#readme"
 }
